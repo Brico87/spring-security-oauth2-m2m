@@ -1,0 +1,39 @@
+# -----------------------------------------------------------------------------
+# API configuration
+# -----------------------------------------------------------------------------
+
+com:
+  api:
+    scheme: http
+    host: 127.0.0.1
+    port: 5432
+    endpoint: "/principal"
+    delay-between-retries: 5000
+  
+spring:
+  profiles:
+    active: my
+  application:
+    name: security-client
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/auth/realms/master
+        registration:
+          keycloak:
+            client-id: security-client
+            client-secret: ${security.client.secret}
+            authorization-grant-type: client_credentials
+            
+server:
+  port: 0
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  
+      
+      

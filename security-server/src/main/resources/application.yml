@@ -1,0 +1,31 @@
+# application configuration
+spring:
+  application:
+    name: security-server
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/auth/realms/master
+
+# server properties
+server:
+  port: 5432
+
+com:
+  security:
+    oauth2:
+      jwt:
+        authenticated-path-matchers: 
+        - "/principal"
+        identity-claim-label: clientId
+      
+# exposition configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  security:
+    enabled: false
+  
